@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/course_details.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lesson.css') }}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <span class="icon">📚</span>
+            <span>EduLearn</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>Dashboard</a>
+            <a href="{{ url_for('courses') }}" {% if request.endpoint == 'courses' %}class="active"{% endif %}>Courses</a>
+            <a href="#">Resources</a>
+            <a href="#">Community</a>
+            <a href="#">Help Center</a>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-button">💬</button>
+            <button class="icon-button">⚙️</button>
+            <div class="user-menu">
+                <span class="username">{{ current_user.username }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <nav class="side-nav">
+                <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}><span class="icon">📊</span> Overview</a>
+                <a href="{{ url_for('courses') }}" {% if request.endpoint == 'courses' %}class="active"{% endif %}><span class="icon">📚</span> My Courses</a>
+                <a href="#"><span class="icon">📅</span> Schedule</a>
+                <a href="#"><span class="icon">📈</span> Progress</a>
+                <a href="#"><span class="icon">👥</span> Community</a>
+            </nav>
+
+            <h2>My Learning</h2>
+            <nav class="side-nav">
+                <a href="#"><span class="icon">🌐</span> Web Development</a>
+                <a href="#"><span class="icon">📜</span> JavaScript</a>
+                <a href="#"><span class="icon">🎨</span> UX/UI Design</a>
+                <a href="#"><span class="icon">📊</span> Data Science</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Courses</h3>
+                    <div class="stat-value">{{ data.total_courses }}</div>
+                    <div class="stat-detail">{{ data.courses_in_progress }} in progress, {{ data.courses_completed }} completed</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Hours Studied</h3>
+                    <div class="stat-value">{{ data.hours_studied }}</div>
+                    <div class="stat-detail">+{{ data.growth_rate }}% from last month</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Certificates</h3>
+                    <div class="stat-value">{{ data.certificates }}</div>
+                    <div class="stat-detail">{{ data.pending_certificates }} pending completion</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Community Points</h3>
+                    <div class="stat-value">{{ data.community_points }}</div>
+                    <div class="stat-detail">{{ data.ranking }}</div>
+                </div>
+            </div>
+
+            <div class="stats-summary">
+                <h2>Learning Progress</h2>
+                <p class="subtitle">Your learning activity over the past 7 months</p>
+                <div class="progress-bars">
+                    {% for month, value in data.learning_progress.items() %}
+                    <div class="monthly-progress">
+                        <div class="progress-bar-vertical">
+                            <div class="progress" style="height: {{ value }}%;"></div>
+                        </div>
+                        <span class="month-label">{{ month }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <h2>Weekly Engagement</h2>
+                <p class="subtitle">Hours spent learning this week</p>
+                <div class="weekly-stats">
+                    {% for day, hours in data.weekly_engagement.items() %}
+                    <div class="day-stat">
+                        <span class="day-label">{{ day }}</span>
+                        <div class="hours-bar">
+                            <div class="hours" style="width: {{ (hours / 8) * 100 }}%;"></div>
+                        </div>
+                        <span class="hours-label">{{ hours }}h</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html> 

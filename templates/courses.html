@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="learning-container">
+    <!-- Continue Learning Section -->
+    <section class="continue-learning">
+        <h2>Continue Learning</h2>
+        <div class="course-cards">
+            {% for course in courses.in_progress %}
+            <div class="course-card">
+                <div class="course-image placeholder"></div>
+                <div class="course-status">
+                    <span class="status-badge {% if course.progress >= 90 %}almost-complete{% else %}in-progress{% endif %}">
+                        {% if course.progress >= 90 %}Almost Complete{% else %}In Progress{% endif %}
+                    </span>
+                    <span class="time-ago">{{ course.last_accessed }}</span>
+                </div>
+                <h3>{{ course.title }}</h3>
+                <p class="instructor">Instructor: {{ course.instructor }}</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: {{ course.progress }}%"></div>
+                </div>
+                <span class="progress-text">{{ course.progress }}%</span>
+                <a href="{{ url_for('course_details', course_id=course.id) }}" class="continue-btn">Continue</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Two Column Layout for Events and Recommendations -->
+    <div class="two-column-layout">
+        <!-- Upcoming Events Section -->
+        <section class="upcoming-events">
+            <h2>Upcoming Events</h2>
+            <p class="section-subtitle">Scheduled sessions and workshops</p>
+            
+            <div class="events-list">
+                {% for event in courses.upcoming_events %}
+                <div class="event-item">
+                    <div class="event-icon">📅</div>
+                    <div class="event-details">
+                        <h3>{{ event.title }}</h3>
+                        <p class="event-time">{{ event.date }} • {{ event.time }}</p>
+                        <p class="event-instructor">Instructor: {{ event.instructor }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <a href="#" class="view-all-btn">View All Events</a>
+            </div>
+        </section>
+
+        <!-- Recommended Courses Section -->
+        <section class="recommended-courses">
+            <h2>Recommended For You</h2>
+            <p class="section-subtitle">Based on your interests and progress</p>
+
+            <div class="course-recommendations">
+                {% for course in courses.recommended %}
+                <div class="recommended-course">
+                    <div class="course-thumbnail placeholder"></div>
+                    <div class="course-info">
+                        <h3>{{ course.title }}</h3>
+                        <p>{{ course.description }}</p>
+                        <div class="course-tags">
+                            {% for tag in course.tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <a href="#" class="explore-more-btn">Explore More Courses</a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %} 

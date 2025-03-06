@@ -1,0 +1,194 @@
+/* Course Details Page */
+.course-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Course Header */
+.course-header {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.back-icon {
+    font-size: 1.25rem;
+}
+
+.course-title-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.instructor {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Course Progress */
+.course-progress {
+    max-width: 600px;
+}
+
+.progress-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--secondary-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Course Content */
+.course-content {
+    display: grid;
+    gap: 2rem;
+}
+
+/* Course Overview */
+.course-overview {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.course-overview h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.overview-text {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.course-goal {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 16px;
+    font-size: 0.875rem;
+}
+
+/* Course Modules */
+.course-modules {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.course-modules h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.module-card {
+    padding: 1.5rem;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.module-header h3 {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.status {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--text-light);
+}
+
+.module-card.completed .status {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.module-card.in-progress .status {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--primary-color);
+}
+
+.module-description {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.module-meta {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .course-details {
+        padding: 1rem;
+    }
+
+    .course-title-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-overview,
+    .course-modules {
+        padding: 1.5rem;
+    }
+} 

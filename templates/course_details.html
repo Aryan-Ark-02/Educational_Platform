@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="course-details">
+    <div class="course-header">
+        <a href="{{ url_for('courses') }}" class="back-link">
+            <span class="back-icon">←</span> Back to Courses
+        </a>
+        
+        <div class="course-title-section">
+            <h1>{{ course.title }}</h1>
+            <p class="instructor">Instructor: {{ course.instructor }}</p>
+            
+            <div class="course-progress">
+                <span class="progress-label">Progress: {{ course.progress }}%</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: {{ course.progress }}%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="course-content">
+        <section class="course-overview">
+            <h2>Course Overview</h2>
+            <p class="overview-text">{{ course.overview }}</p>
+            
+            <p class="course-goal">By the end of this course, you'll be able to build responsive websites from scratch, understand core web development concepts, and have a solid foundation for more advanced topics.</p>
+            
+            <div class="course-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Responsive Design</span>
+                <span class="tag">Web Accessibility</span>
+            </div>
+        </section>
+
+        <section class="course-modules">
+            <h2>Course Modules</h2>
+            
+            <div class="modules-grid">
+                {% for module in course.modules %}
+                <a href="{{ url_for('lesson', course_id=course.id, lesson_id=module.id) }}" class="module-card {% if module.status == 'completed' %}completed{% elif module.status == 'in_progress' %}in-progress{% endif %}">
+                    <div class="module-header">
+                        <h3>{{ module.id }}. {{ module.title }}</h3>
+                        <span class="status">{{ module.status|title|replace('_', ' ') }}</span>
+                    </div>
+                    <p class="module-description">{{ module.description }}</p>
+                    <div class="module-meta">
+                        <span class="lessons">{{ module.lessons }} lesson{% if module.lessons != 1 %}s{% endif %} • {{ module.duration }} min</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %} 

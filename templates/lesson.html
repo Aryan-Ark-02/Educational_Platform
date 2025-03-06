@@ -1,0 +1,119 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="lesson-container">
+    <!-- Lesson Header -->
+    <div class="lesson-header">
+        <a href="{{ url_for('course_details', course_id=course.id) }}" class="back-link">
+            <span class="back-icon">←</span> Back to Course
+        </a>
+        
+        <div class="lesson-title-section">
+            <h1>{{ lesson.title }}</h1>
+            <p class="lesson-subtitle">{{ lesson.description }}</p>
+        </div>
+
+        <div class="lesson-navigation">
+            <span class="next-label">Next</span>
+            <a href="#" class="next-link">
+                <span>CSS Fundamentals</span>
+                <span class="next-icon">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Lesson Content -->
+    <div class="lesson-content">
+        <!-- Video Section -->
+        <div class="video-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="notes-section">
+            <h2>My Notes</h2>
+            <p class="notes-subtitle">Add personal notes for this lesson</p>
+            
+            <div class="notes-editor">
+                <textarea 
+                    class="notes-textarea" 
+                    placeholder="Add a new note..."
+                    rows="4"
+                ></textarea>
+                <button class="save-note-btn">Save</button>
+            </div>
+
+            <div class="notes-placeholder">
+                <div class="placeholder-icon">📝</div>
+                <p>No notes yet. Add your first note above.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="lesson-sidebar">
+        <div class="lesson-navigation-section">
+            <h2>Lesson Navigation</h2>
+            <p class="nav-subtitle">Navigate through course lessons</p>
+            
+            <ul class="lesson-list">
+                <li class="lesson-item active">
+                    <span class="lesson-number">1</span>
+                    <span class="lesson-name">Introduction to HTML</span>
+                    <span class="lesson-duration">12:30</span>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-number">2</span>
+                    <span class="lesson-name">CSS Fundamentals</span>
+                    <span class="lesson-duration">15:45</span>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-number">3</span>
+                    <span class="lesson-name">Responsive Design</span>
+                    <span class="lesson-duration">18:20</span>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-number">4</span>
+                    <span class="lesson-name">JavaScript Basics</span>
+                    <span class="lesson-duration">20:15</span>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-number">5</span>
+                    <span class="lesson-name">Web Accessibility</span>
+                    <span class="lesson-duration">14:50</span>
+                </li>
+                <li class="lesson-item">
+                    <span class="lesson-number">6</span>
+                    <span class="lesson-name">Final Project</span>
+                    <span class="lesson-duration">25:00</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="resources-section">
+            <h2>External Resources</h2>
+            <p class="resources-subtitle">Add helpful links related to this lesson</p>
+            
+            <div class="resource-form">
+                <div class="resource-inputs">
+                    <input type="text" class="resource-title" placeholder="Resource title">
+                    <input type="url" class="resource-url" placeholder="URL">
+                </div>
+                <button class="add-resource-btn">+</button>
+            </div>
+
+            <div class="resources-placeholder">
+                <div class="placeholder-icon">🔗</div>
+                <p>No external resources yet. Add your first link above.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+{% endblock %} 
